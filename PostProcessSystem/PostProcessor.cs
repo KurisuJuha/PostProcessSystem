@@ -41,11 +41,10 @@ public class PostProcessor<T> : IPostProcessor<T>
             sortedPostProcessors.Add(targetPostProcess);
         }
 
-        foreach (var edge in _edges) Console.WriteLine(edge.ToString());
-        foreach (var postProcess in freePostProcessors) Console.WriteLine(postProcess.GetType());
-        foreach (var postProcessor in sortedPostProcessors) Console.WriteLine(postProcessor.GetType());
+        if (sortedPostProcessors.Count != PostProcessors.Count) throw new Exception("You are bad boy");
 
-        return PostProcessors.Aggregate(value, (current, postProcessor) => postProcessor.PostProcess(current));
+        return ((IEnumerable<IPostProcessor<T>>)sortedPostProcessors).Reverse()
+            .Aggregate(value, (current, postProcessor) => postProcessor.PostProcess(current));
     }
 
     private bool TypeEqual(Type type1, Type type2)

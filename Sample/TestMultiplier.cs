@@ -2,10 +2,10 @@ using JuhaKurisu.PostProcessSystem;
 
 namespace Sample;
 
-public class TestMultiplier : IPostProcessor<int>
+public class TestMultiplier : IPostProcessor<string>
 {
-    public int PostProcess(int value)
+    public string PostProcess(string value)
     {
-        return value * 10;
+        return value + "Multiplier";
     }
 }

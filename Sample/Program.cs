@@ -1,18 +1,18 @@
 ﻿using JuhaKurisu.PostProcessSystem;
 using Sample;
 
-var postProcessor = new PostProcessor<int>(
+var postProcessor = new PostProcessor<string>(
+    new ExecutionOrderConstraint(typeof(TestAdder), typeof(TestMultiplier)),
     new ExecutionOrderConstraint(typeof(TestMultiplier), typeof(TestAdder))
 )
 {
-    PostProcessors = new IPostProcessor<int>[]
+    PostProcessors = new IPostProcessor<string>[]
     {
         new TestMultiplier(),
-        new TestAdder()
+        new TestAdder(),
+        new TestHoge(),
+        new TestFoo()
     }.ToHashSet()
 };
 
-if (int.TryParse(Console.ReadLine(), out var value))
-    Console.WriteLine(postProcessor.PostProcess(value));
-else
-    Console.WriteLine("Parse Error!!!!");
+Console.WriteLine(postProcessor.PostProcess(Console.ReadLine() ?? ""));

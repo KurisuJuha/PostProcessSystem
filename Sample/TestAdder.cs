@@ -2,10 +2,10 @@ using JuhaKurisu.PostProcessSystem;
 
 namespace Sample;
 
-public class TestAdder : IPostProcessor<int>
+public class TestAdder : IPostProcessor<string>
 {
-    public int PostProcess(int value)
+    public string PostProcess(string value)
     {
-        return value + 1;
+        return value + "Adder";
     }
 }
