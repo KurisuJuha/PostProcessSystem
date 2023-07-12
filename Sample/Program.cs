@@ -1,12 +1,12 @@
 ﻿using JuhaKurisu.PostProcessSystem;
 using Sample;
 
-var postProcessor = new PostProcessor<int>
+var postProcessor = new PostProcessor<int>(new ExecutionOrderConstraint(typeof(TestMultiplier), typeof(TestAdder)))
 {
     PostProcessors = new IPostProcessor<int>[]
     {
-        new TestAdder(),
-        new TestMultiplier()
+        new TestMultiplier(),
+        new TestAdder()
     }
 };
 
