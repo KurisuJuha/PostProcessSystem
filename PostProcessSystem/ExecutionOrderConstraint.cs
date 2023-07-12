@@ -4,8 +4,8 @@ namespace JuhaKurisu.PostProcessSystem;
 
 public class ExecutionOrderConstraint
 {
+    public readonly ReadOnlyCollection<Type> Dependencies;
     public readonly Type Target;
-    public readonly IReadOnlyCollection<Type> Dependencies;
 
     public ExecutionOrderConstraint(Type target, params Type[] dependencies)
     {
